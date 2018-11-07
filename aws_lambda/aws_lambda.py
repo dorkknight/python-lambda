@@ -334,12 +334,28 @@ def build(
         d.strip() for d in build_source_directories.split(',')
     ]
 
+    # Allow for list of files to exclude from bundling into
+    # zipped package.
+    build_excluded_files = build_config.get('excluded_files', '')
+    build_excluded_files = (
+        build_excluded_files
+        if build_excluded_files is not None
+        else ''
+    )
+    excluded_files = [
+        fn.strip() for fn in build_excluded_files.split(',')
+    ]
+    print('Excluded Files: %r' % excluded_files)
+
     files = []
     for filename in os.listdir(src):
         if os.path.isfile(filename):
             if filename == '.DS_Store':
                 continue
             if filename == config_file:
+                continue
+            if filename in excluded_files:
+                print('Excluding: %r' % filename)
                 continue
             print('Bundling: %r' % filename)
             files.append(os.path.join(src, filename))
