@@ -345,7 +345,6 @@ def build(
     excluded_files = [
         fn.strip() for fn in build_excluded_files.split(',')
     ]
-    print('Excluded Files: %r' % excluded_files)
 
     files = []
     for filename in os.listdir(src):
