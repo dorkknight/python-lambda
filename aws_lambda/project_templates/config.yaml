@@ -37,4 +37,4 @@ environment_variables:
 # Build options
 build:
   source_directories: lib # a comma delimited list of directories in your project root that contains source to package.
-  excluded_files: event.json # a comma delimited list of files in project root to exclude from zipped package.
+  excluded_files: event.json, .gitignore # a comma delimited list of files in project root to exclude from zipped package.
